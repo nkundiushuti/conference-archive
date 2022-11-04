@@ -32,12 +32,12 @@ import os
 import random
 import sys
 
-import pyzenodo3
+# import pyzenodo3
 
-zen = pyzenodo3.Zenodo()
+# zen = pyzenodo3.Zenodo()
 
-# import zen.api
-# import zen.models
+import zen.api
+import zen.models
 
 logger = logging.getLogger("upload_to_zenodo")
 
