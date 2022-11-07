@@ -31,10 +31,7 @@ import logging
 import os
 import random
 import sys
-import zen
-# import pyzenodo3
-
-# zen = pyzenodo3.Zenodo()
+from ... import zen
 
 import zen.api
 import zen.models
