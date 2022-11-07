@@ -135,7 +135,6 @@ if __name__ == '__main__':
         proceedings = proceedings[:args.max_items]
 
     results = archive(proceedings, conferences, args.stage, args.num_cpus, args.verbose)
-    import pdb;pdb.set_trace()
 
     with open(args.output_file, 'w') as fp:
         json.dump(results, fp, indent=2)
