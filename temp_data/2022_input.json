@@ -1,11 +1,10 @@
 [
   {
-        "title": "In Search of Sañcāras: Tradition-informed Repeated Melodic Pattern Recognition in Carnatic Music",
+        "title": "Analysis and detection of singing techniques in repertoires of J-POP solo singers",
         "author": [
-            "Thomas Nuttall",
-            "Genís Plaja-Roglans",
-            "Lara Pearson",
-            "Xavier Serra"
+            "Yuya Yamamoto",
+            "Juhan Nam",
+            "Hiroko Terasawa"
         ],
         "year": "2022",
         "doi": null,
@@ -13,22 +12,19 @@
         "video_url": null,
         "poster_url": null,
         "thumbnail_url": null,
-        "pages": "337-344",
-        "abstract": "Carnatic Music is a South Indian art and devotional music practice in which melodic patterns (motifs and phrases), known as sañcāras, play a crucial structural and expressive role. We demonstrate how the combination of transposition invariant features learnt by a Complex Autoencoder (CAE) and predominant pitch tracks extracted using a Frequency-Temporal Attention Network (FTA-Net) can be used to annotate and group regions of variable-length, repeated, melodic patterns in audio recordings of multiple Carnatic Music performances. These models are trained on novel/expert-curated datasets of hundreds of Carnatic audio recordings and the extraction process tailored to account for the unique characteristics of sañcāras in Carnatic Music. Experimental results show that the proposed method is able to identify 54% of all sañcaras annotated by a professional Carnatic vocalist. Code to reproduce and interact with these results is available online.",
+        "pages": "384-391",
+        "abstract": "In this paper, we focus on singing techniques within the scope of music information retrieval research. We investigate how singers use singing techniques using real-world recordings of famous solo singers in Japanese popular music songs (J-POP). First, we built a new dataset of singing techniques. The dataset consists of 168 commercial J-POP songs, and each song is annotated using various singing techniques with timestamps and vocal pitch contours. We also present descriptive statistics of singing techniques on the dataset to clarify what and how often singing techniques appear. We further explored the difficulty of the automatic detection of singing techniques using previously proposed machine learning techniques. In the detection, we also investigate the effectiveness of auxiliary information (i.e., pitch and distribution of label duration), not only providing the baseline. The best result achieves 40.4% at macro-average F-measure on nine-way multi-class detection. We provide the annotation of the dataset and its detail on the appendix website.",
         "zenodo_id": null,
         "dblp_key": null,
-        "ee": "../temp_data/split_articles/000040.pdf"
+        "ee": "../temp_data/split_articles/000046.pdf"
     },
     {
-        "title": "Automatic Chinese National Pentatonic Modes Recognition Using Convolutional Neural Network",
+        "title": "Performance MIDI-to-score conversion by neural beat tracking",
         "author": [
-            "Zhaowen Wang",
-            "Mingjin Che",
-            "Yue Yang",
-            "Wen Wu Meng",
-            "Qinyu Li",
-            "Fan Xia",
-            "Wei Li"
+            "Lele Liu",
+            "Qiuqiang Kong",
+            "Veronica Morfi",
+            "Emmanouil Benetos"
         ],
         "year": "2022",
         "doi": null,
@@ -36,18 +32,19 @@
         "video_url": null,
         "poster_url": null,
         "thumbnail_url": null,
-        "pages": "345-352",
-        "abstract": "Chinese national pentatonic modes, with five tones of Gong, Shang, Jue, Zhi and Yu as the core, play an essential role in traditional Chinese music culture. After the early twentieth century, with the development of new Chinese music, the ancient Chinese theory of scales gradually developed into a new pentatonic modes theory under the influence of western music. In this paper, we briefly introduce our self-built CNPM (Chinese National Pentatonic Modes) Dataset, then design residual convolutional neural network models to identify which TongGong system the mode belongs, the pitch of tonic, the mode pattern and the mode type from audio signals, in combination with musical domain knowledge. We use both single-task and multi-task models with three strategies for identification, and compare them with a simple template-based baseline method. In experiments, we use seven accuracy metrics to evaluate the models. The results on identifying both the tonic pitch and the pattern of mode correctly achieve an average accuracy of 69.65%. As an initial research on automatic Chinese national pentatonic modes recognition, this work will contribute to the development of multicultural music information retrieval, computational ethnomusicology and five-tone music therapy.",
+        "pages": "395-402",
+        "abstract": "Rhythm quantisation is an essential part of converting performance MIDI recordings into musical scores. Previous works on rhythm quantisation are limited to the use of probabilistic or statistical methods. In this paper, we propose a MIDI-to-score quantisation method using a convolutional-recurrent neural network (CRNN) trained on MIDI note sequences to predict whether notes are on beats. Then, we expand the CRNN model to predict the quantised times for all beat and non-beat notes. Furthermore, we enable the model to predict the key signatures, time signatures, and hand parts of all notes. Our proposed performance MIDI-to-score system achieves significantly better performance compared to commercial software evaluated on the MV2H metric. We release the toolbox for converting performance MIDI into MIDI scores at: https://github.com/cheriell/PM2S .",
         "zenodo_id": null,
         "dblp_key": null,
-        "ee": "../temp_data/split_articles/000041.pdf"
+        "ee": "../temp_data/split_articles/000047.pdf"
     },
     {
-        "title": "Teach Yourself Georgian Folk Songs Dataset: A Annotated Corpus Of Traditional Vocal Polyphony",
+        "title": "Symbolic Music Loop Generation with Neural Discrete Representations",
         "author": [
-            "David Gillman",
-            "Atalay Kutlay",
-            "Uday Goyat"
+            "Sangjun Han",
+            "Hyeongrae Ihm",
+            "Moontae Lee",
+            "Woohyung Lim"
         ],
         "year": "2022",
         "doi": null,
@@ -55,19 +52,21 @@
         "video_url": null,
         "poster_url": null,
         "thumbnail_url": null,
-        "pages": "353-360",
-        "abstract": "New datasets of non-Western traditional music contribute to the development of knowledge in MIR and allow computational techniques to inform ethnomusicology. We present an annotated dataset of traditional vocal polyphony from two regions of the Republic of Georgia with disparate musical characteristics. The audio for each song consists of four polyphonic recordings of one performance from different microphones. We present a process and workflow that we use to annotate the dataset, which takes advantage of the salience of individual voices in each recording. The process results in an $f_0$ estimate for each vocal part.",
+        "pages": "403-410",
+        "abstract": "Since most of music has repetitive structures from motifs to phrases, repeating musical ideas can be a basic operation for music composition. The basic block that we focus on is conceptualized as loops which are essential ingredients of music. Furthermore, meaningful note patterns can be formed in a finite space, so it is sufficient to represent them with combinations of discrete symbols as done in other domains. In this work, we propose symbolic music loop generation via learning discrete representations. We first extract loops from MIDI datasets using a loop detector and then learn an autoregressive model trained by discrete latent codes of the extracted loops. We show that our model outperforms well-known music generative models in terms of both fidelity and diversity, evaluating on random space. Our code and supplementary materials are available at https://github.com/sjhan91/Loop_VQVAE_Official.",
         "zenodo_id": null,
         "dblp_key": null,
-        "ee": "../temp_data/split_articles/000042.pdf"
+        "ee": "../temp_data/split_articles/000048.pdf"
     },
     {
-        "title": "Adapting meter tracking models to Latin American music",
+        "title": "Automatic music mixing with deep learning and out-of-domain data",
         "author": [
-            "Lucas S Maia",
-            "Martín Rocamora",
-            "Luiz W P Biscainho",
-            "Magdalena Fuentes"
+            "Marco A Martinez Ramirez",
+            "Weihsiang Liao",
+            "Chihiro Nagashima",
+            "Giorgio Fabbro",
+            "Stefan Uhlich",
+            "Yuki Mitsufuji"
         ],
         "year": "2022",
         "doi": null,
@@ -75,18 +74,17 @@
         "video_url": null,
         "poster_url": null,
         "thumbnail_url": null,
-        "pages": "361-368",
-        "abstract": "Beat and downbeat tracking models have improved significantly in recent years with the introduction of deep learning methods. However, despite these improvements, several challenges remain. Particularly, the adaptation of available models to underrepresented music traditions in MIR is usually synonymous with collecting and annotating large amounts of data, which is impractical and time-consuming. Transfer learning, data augmentation, and fine-tuning techniques have been used quite successfully in related tasks and are known to alleviate this bottleneck. Furthermore, when studying these music traditions, models are not required to generalize to multiple mainstream music genres but to perform well in more constrained, homogeneous conditions. In this work, we investigate simple yet effective strategies to adapt beat and downbeat tracking models to two different Latin American music traditions and analyze the feasibility of these adaptations in real-world applications concerning the data and computational requirements. Contrary to common belief, our findings show it is possible to achieve good performance by spending just a few minutes annotating a portion of the data and training a model in a standard CPU machine, with the precise amount of resources needed depending on the task and the complexity of the dataset.",
+        "pages": "411-418",
+        "abstract": "Music mixing traditionally involves recording instruments in the form of clean, individual tracks and blending them into a final mixture using audio effects and expert knowledge (e.g., a mixing engineer). The automation of music production tasks has become an emerging field in recent years, where rule-based methods and machine learning approaches have been explored. Nevertheless, the lack of dry or clean instrument recordings limits the performance of such models, which is still far from professional human-made mixes. We explore whether we can use out-of-domain data such as wet or processed multitrack music recordings and repurpose it to train supervised deep learning models that can bridge the current gap in automatic mixing quality. To achieve this we propose a novel data preprocessing method that allows the models to perform automatic music mixing. We also redesigned a listening test method for evaluating music mixing systems. We validate our results through such subjective tests using highly experienced mixing engineers as participants.",
         "zenodo_id": null,
         "dblp_key": null,
-        "ee": "../temp_data/split_articles/000043.pdf"
+        "ee": "../temp_data/split_articles/000049.pdf"
     },
     {
-        "title": "Critiquing Task- versus Goal-oriented Approaches: A Case for Makam Recognition",
+        "title": "Music-STAR: a Style Translation system for Audio-based Re-instrumentation",
         "author": [
-            "Kaustuv Kanti Ganguli",
-            "Sertan Şentürk",
-            "Carlos Guedes"
+            "Mahshid Alinoori",
+            "Vassilios Tzerpos"
         ],
         "year": "2022",
         "doi": null,
@@ -94,20 +92,18 @@
         "video_url": null,
         "poster_url": null,
         "thumbnail_url": null,
-        "pages": "369-376",
-        "abstract": "Computational Musicology and Music Information Retrieval (MIR) address the core musical question under study from a different perspective, often a combination of top-down vs. bottom-up approaches. However, the evaluation metrics for MIR tend to capture the model accuracy in terms of the goal. For instance, mode (melodic framework) recognition is implemented with a goal to evaluate and compare melodic analysis approaches, but it is worth investigating if at all it lends itself as one befitting proxy task. In this work, we aim to review whether the model actually learns the task it is intended for. This is particularly relevant in non-Eurogenetic music repertoires where the grammatical rules are rather prescriptive. We employ methodologies that combine domain-knowledge and data-driven optimizations as a possible way for a comprehensive understanding of these relationships. This is tested on Makam which is one of the understudied corpora in MIR. We evaluate an array of feature-engineering methods on the largest mode recognition dataset curated for Ottoman-Turkish makam music, composed of 1000 recordings in 50 makams. We adapted the time-delayed melody surfaces (TDMS) feature, which in combination with support vector machine (SVM) classifier yields 77.2% recognition accuracy, comparable to the current state-of-the-art. We also address (ethno)musicology-driven tasks with a view to gathering deeper insights into this music, such as tuning, intonation, and melodic similarity. We aim to propose avenues to extend the study to makam characterization over the mere goal of recognizing the mode, to better understand the (dis)similarity space and other plausible musically interesting facets.",
+        "pages": "419-426",
+        "abstract": "Music style translation aims to generate variations of existing pieces of music by altering the style-related characteristics of the original piece while content, such as the melody, remains unchanged. These alterations could involve timbre translation, re-harmonization, or music rearrangement. Previous studies have achieved promising results utilizing time-frequency and symbolic music representations. Music style translation on raw audio has also been investigated and applied to single-instrument pieces. Although processing raw audio is more challenging, it provides richer information about timbres, dynamics, and articulations.In this paper, we introduce Music-STAR, the first audio-based translation system that translates the existing instruments in a piece into a set of target instruments without using source separation. To conduct our experiments, we also present an audio dataset that contains two-track pieces performed by two instrument sets alongside their stems. We carry out subjective and objective evaluations to compare Music-STAR with a variety of baseline methods and demonstrate its superiority.",
         "zenodo_id": null,
         "dblp_key": null,
-        "ee": "../temp_data/split_articles/000044.pdf"
+        "ee": "../temp_data/split_articles/000050.pdf"
     },
     {
-        "title": "A Dataset for Greek Traditional and Folk Music: Lyra",
+        "title": "Learning Unsupervised Hierarchies of Audio Concepts",
         "author": [
-            "Charilaos Papaioannou",
-            "Ioannis Valiantzas",
-            "Theodore Giannakopoulos",
-            "Maximos Kaliakatsos-Papakostas",
-            "Alexandros Potamianos"
+            "Darius Afchar",
+            "Romain Hennequin",
+            "Vincent Guigue"
         ],
         "year": "2022",
         "doi": null,
@@ -115,10 +111,114 @@
         "video_url": null,
         "poster_url": null,
         "thumbnail_url": null,
-        "pages": "377-383",
-        "abstract": "Studying under-represented music traditions under the MIR scope is crucial, not only for developing novel analysis tools, but also for unveiling musical functions that might prove useful in studying world musics. This paper presents a dataset for Greek Traditional and Folk music that includes 1570 pieces, summing in around 80 hours of data. The dataset incorporates YouTube timestamped links for retrieving audio and video, along with rich metadata information with regards to instrumentation, geography and genre, among others. The content has been collected from a Greek documentary series that is available online, where academics present music traditions of Greece with live music and dance performance during the show, along with discussions about social, cultural and musicological aspects of the presented music. Therefore, this procedure has resulted in a significant wealth of descriptions regarding a variety of aspects, such as musical genre, places of origin and musical instruments. In addition, the audio recordings were performed under strict production-level specifications, in terms of recording equipment, leading to very clean and homogeneous audio content. In this work, apart from presenting the dataset in detail, we propose a baseline deep-learning classification approach to recognize the involved musicological attributes. The dataset, the baseline classification methods and the models are provided in public repositories. Future directions for further refining the dataset are also discussed.",
+        "pages": "427-436",
+        "abstract": "Music signals are difficult to interpret from their low-level features, perhaps even more than images: e.g. highlighting part of a spectrogram or an image is often insufficient to convey high-level ideas that are genuinely relevant to humans. In computer vision, concept learning was therein proposed to adjust explanations to the right abstraction level (e.g. detect clinical concepts from radiographs). These methods have yet to be used for MIR.In this paper, we adapt concept learning to the realm of music, with its particularities. For instance, music concepts are typically non-independent and of mixed nature (e.g. genre, instruments, mood), unlike previous work that assumed disentangled concepts.We propose a method to learn numerous music concepts from audio and then automatically hierarchise them to expose their mutual relationships. We conduct experiments on datasets of playlists from a music streaming service, serving as a few annotated examples for diverse concepts. Evaluations show that the mined hierarchies are aligned with both ground-truth hierarchies of concepts -- when available -- and with proxy sources of concept similarity in the general case.",
         "zenodo_id": null,
         "dblp_key": null,
-        "ee": "../temp_data/split_articles/000045.pdf"
+        "ee": "../temp_data/split_articles/000051.pdf"
+    },
+    {
+        "title": "Multi-objective Hyper-parameter Optimization of Behavioral Song Embeddings",
+        "author": [
+            "Massimo Quadrana",
+            "Antoine Larreche-Mouly",
+            "Matthias Mauch"
+        ],
+        "year": "2022",
+        "doi": null,
+        "url": null,
+        "video_url": null,
+        "poster_url": null,
+        "thumbnail_url": null,
+        "pages": "437-445",
+        "abstract": "Song embeddings are a key component of most music recommendation engines. In this work, we study the hyper-parameter optimization of behavioral song embeddings based on Word2Vec on a selection of downstream tasks, namely next-song recommendation, false neighbor rejection, and artist and genre clustering. We present new optimization objectives and metrics to monitor the effects of hyper-parameter optimization. We show that single-objective optimization can cause side effects on the non optimized metrics and propose a simple multi-objective optimization to mitigate these effects.We find that next-song recommendation quality of Word2Vec is anti-correlated with song popularity, and we show how song embedding optimization can balance performance across different popularity levels.We then show potential positive downstream effects on the task of play prediction.Finally, we provide useful insights on the effects of training dataset scale by testing hyper-parameter optimization on an industry-scale dataset.",
+        "zenodo_id": null,
+        "dblp_key": null,
+        "ee": "../temp_data/split_articles/000052.pdf"
+    },
+    {
+        "title": "ATEPP: A Dataset of Automatically Transcribed Expressive Piano Performance",
+        "author": [
+            "Huan Zhang",
+            "Jingjing Tang",
+            "Syed Rm Rafee",
+            "Simon Dixon",
+            "George Fazekas",
+            "Geraint A. Wiggins"
+        ],
+        "year": "2022",
+        "doi": null,
+        "url": null,
+        "video_url": null,
+        "poster_url": null,
+        "thumbnail_url": null,
+        "pages": "446-453",
+        "abstract": "Computational models of expressive piano performance rely on attributes like tempo, timing, dynamics and pedalling. Despite some promising models for performance assessment and performance rendering, results are limited by the scale, breadth and uniformity of existing datasets. In this paper, we present ATEPP, a dataset that contains 1000 hours of performances of standard piano repertoire by 49 world-renowned pianists, organized and aligned by compositions and movements for comparative studies. Scores in MusicXML format are also available for around half of the tracks. We first evaluate and verify the use of transcribed MIDI for representing expressive performance with a listening evaluation that involves recent transcription models. Then, the process of sourcing and curating the dataset is outlined, including composition entity resolution and a pipeline for audio matching and solo filtering. Finally, we conduct baseline experiments for performer identification and performance rendering on our datasets, demonstrating its potential in generalizing expressive features of individual performing style.",
+        "zenodo_id": null,
+        "dblp_key": null,
+        "ee": "../temp_data/split_articles/000053.pdf"
+    },
+    {
+        "title": "PDAugment: Data Augmentation by Pitch and Duration Adjustments for Automatic Lyrics Transcription",
+        "author": [
+            "Chen Zhang",
+            "Jiaxing Yu",
+            "Luchin Chang",
+            "Xu Tan",
+            "Jiawei Chen",
+            "Tao Qin",
+            "Kejun Zhang"
+        ],
+        "year": "2022",
+        "doi": null,
+        "url": null,
+        "video_url": null,
+        "poster_url": null,
+        "thumbnail_url": null,
+        "pages": "454-461",
+        "abstract": "Automatic lyrics transcription (ALT), which can be regarded as automatic speech recognition (ASR) on singing voice, is an interesting and practical topic in academia and industry. ALT has not been well developed mainly due to the dearth of the paired singing voice and lyrics datasets for model training. Considering that there is a large amount of ASR training data, a straightforward method is to leverage ASR data to enhance ALT training. However, the improvement is marginal when training the ALT system directly with ASR data, because of the gap between the singing voice and standard speech data which is rooted in music-specific acoustic characteristics in singing voice. In this paper, we propose PDAugment, a data augmentation method that adjusts pitch and duration of speech at syllable level under the guidance of music scores to help ALT training. Specifically, we adjust the pitch and duration of each syllable in natural speech to those of the corresponding note extracted from music scores, to narrow the gap between natural speech and singing voice. Experiments on DSing30 and Dali corpus show that the ALT system equipped with our PDAugment outperforms previous state-of-the-art systems by 5.9% and 18.1% WERs respectively, demonstrating the effectiveness of PDAugment for ALT.",
+        "zenodo_id": null,
+        "dblp_key": null,
+        "ee": "../temp_data/split_articles/000054.pdf"
+    },
+    {
+        "title": "Parameter Sensitivity of Deep-Feature based Evaluation Metrics for Audio Textures",
+        "author": [
+            "Chitralekha Gupta",
+            "Yize Wei",
+            "Zequn Gong",
+            "Purnima Kamath",
+            "Zhuoyao Li",
+            "Lonce Wyse"
+        ],
+        "year": "2022",
+        "doi": null,
+        "url": null,
+        "video_url": null,
+        "poster_url": null,
+        "thumbnail_url": null,
+        "pages": "462-468",
+        "abstract": "Standard evaluation metrics such as the Inception score and Fréchet Audio Distance provide a general audio quality distance metric between the synthesized audio and reference clean audio. However, the sensitivity of these metrics to variations in the statistical parameters that define an audio texture is not well studied. In this work, we provide a systematic study of the sensitivity of some of the existing audio quality evaluation metrics to parameter variations in audio textures. Furthermore, we also study three more potentially parameter-sensitive metrics for audio texture synthesis, (a) a Gram matrix based distance, (b) an Accumulated Gram metric using a summarized version of the Gram matrices, and (c) a cochlear-model based statistical features metric. These metrics use deep features that summarize the statistics of any given audio texture, thus being inherently sensitive to variations in the statistical parameters that define an audio texture. We study and evaluate the sensitivity of existing standard metrics as well as Gram matrix and cochlear-model based metrics in response to control-parameter variations for audio textures across a wide range of texture and parameter types, and validate with subjective evaluation. We find that each of the metrics is sensitive to different sets of texture-parameter types. This is the first step towards investigating objective metrics for assessing parameter sensitivity in audio textures.",
+        "zenodo_id": null,
+        "dblp_key": null,
+        "ee": "../temp_data/split_articles/000055.pdf"
+    },
+    {
+        "title": "Stability of Symbolic Feature Group Importance in the Context of Multi-Modal Music Classification",
+        "author": [
+            "Igor Vatolkin",
+            "Cory Mckay"
+        ],
+        "year": "2022",
+        "doi": null,
+        "url": null,
+        "video_url": null,
+        "poster_url": null,
+        "thumbnail_url": null,
+        "pages": "469-476",
+        "abstract": "Multi-modal music classification creates supervised models trained on features from different sources (modalities): the audio signal, the score, lyrics, album covers, expert tags, etc. A concept of “multi-group feature importance” not only helps to measure the individual relevance of features of a feature type under investigation (such as the instruments present in a piece), but also serves to quantify the potential for further improving classification by adding features from other feature types or extracted from different kinds of sources, based on a multi-objective analysis of feature sets after evolutionary feature selection. In this study, we investigate the stability of feature group importance when different classification methods and different measures of classification quality are applied. Since musical scores are particularly helpful in deriving semantically meaningful, robust genre characteristics, we focus on the feature groups analyzed by the jSymbolic feature extraction software, which describe properties associated with instrumentation, basic pitch statistics, melody, chords, tempo, and other rhythmic aspects. These symbolic features are analyzed in the context of musical information drawn from five other modalities, and experiments are conducted involving two datasets, one small and one large. The results show that, although some feature groups can remain similarly important compared to others, differences can also be evident in various applications, and can depend on the particular classifier and evaluation measure being used. Insights drawn from this type of analysis can potentially be helpful in effectively matching specific features or feature groups to particular classifiers and evaluation measures in future feature-based MIR research.",
+        "zenodo_id": null,
+        "dblp_key": null,
+        "ee": "../temp_data/split_articles/000056.pdf"
     }
 ]
