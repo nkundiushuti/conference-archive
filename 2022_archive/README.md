@@ -43,8 +43,15 @@ The high level process is to upload each PDF to Zenodo using the Zenodo API and 
 The Zenodo archival is the most crucial step of the entire archival workflow and hence it's important to understand this process clearly. Please read the instructions on using the [Zenodo uploader](https://github.com/ismir/conference-archive/blob/master/README.md#3-zenodo-uploader) before procedding further. When you understand how upload works, try out with the sandbox version to familiarize yourself and check all metadata. 
 
 ```
-# Test with a run like this from scripts folder
-$ python upload_to_zenodo.py     ../temp_data/2022_input.json     ../database/conferences.json     ../database/proceedings/2022.json     --stage dev     --verbose 50     --num_cpus -2     --max_items 2
+# Test with a run like this from 2022_archive folder
+$ ../scripts/upload_to_zenodo.py \
+    ../temp_data/2022_input.json \
+    ../database/conferences.json \
+    ../database/proceedings/2022.json \
+    --stage dev \
+    --verbose 50 \
+    --num_cpus -2 \
+    --max_items 2
 ```
 
 Caveat: `upload_to_zenodo.py` is not very stable and please ensure you test it out thoroughly with a few files in `"dev"` before running it over the entire proceedings PDFs. These checks cannot be emphasized enough since we cannot delete the DOI once assigned in `"prod"` mode and it clutters up the Zenodo archive badly. 
