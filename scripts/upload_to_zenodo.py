@@ -31,8 +31,10 @@ import logging
 import os
 import random
 import sys
-import pdb;pdb.set_trace()
-from ... import zen
+
+### relative imports from parent
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+import zen
 
 import zen.api
 import zen.models
