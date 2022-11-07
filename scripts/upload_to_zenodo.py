@@ -31,6 +31,7 @@ import logging
 import os
 import random
 import sys
+import pdb;pdb.set_trace()
 from ... import zen
 
 import zen.api
