@@ -75,7 +75,7 @@ def upload(ismir_paper, conferences, stage=zen.DEV):
 
     upload_response = zen.upload_file(zid, ismir_paper['ee'], stage=stage)
     ismir_paper['ee'] = upload_response['links']['download']
-    ismir_paper['communities'] = ['ismir']
+    ismir_paper['communities']: [{'identifier': 'ismir'}]
     ismir_paper['keywords'] = ['ismir','ismir2022']
 
     # TODO: Should be a package function
