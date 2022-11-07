@@ -24,7 +24,7 @@ class Zenodo(Record):
               'description', 'communities', 'conference_dates', 'conference_place',
               'conference_title', 'partof_title', 'publication_date', 'conference_acronym',
               'conference_url', 'imprint_publisher', 'imprint_place', 'access_right',
-              'license', 'doi']
+              'license', 'doi', 'keywords']
 
     def __init__(self, title, creators, partof_pages, conference_dates, conference_place,
                  conference_title, partof_title, publication_date, conference_acronym,
