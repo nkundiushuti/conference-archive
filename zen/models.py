@@ -34,8 +34,8 @@ class Zenodo(Record):
                  description='[TODO] Add abstract here.', doi=None, keywords=None):
 
         communities = communities or [{'identifier': 'ismir'}]
-        import pdb;pdb.set_trace()
-        keywords = keywords or ['ismir','ismir']
+        print(conference_dates)
+        keywords = keywords or ['ismir']
         super().__init__(
             upload_type=upload_type, publication_type=publication_type,
             title=title, creators=creators, partof_pages=partof_pages,
