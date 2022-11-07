@@ -1,8 +1,11 @@
 [
-   {
-        "title": "Inaccurate Prediction or Genre Evolution? Rethinking Genre Classification",
+  {
+        "title": "In Search of Sañcāras: Tradition-informed Repeated Melodic Pattern Recognition in Carnatic Music",
         "author": [
-            "Ke Nie"
+            "Thomas Nuttall",
+            "Genís Plaja-Roglans",
+            "Lara Pearson",
+            "Xavier Serra"
         ],
         "year": "2022",
         "doi": null,
@@ -10,10 +13,112 @@
         "video_url": null,
         "poster_url": null,
         "thumbnail_url": null,
-        "pages": "329-336",
-        "abstract": "The existing MIR research on genre classification primarily focuses on how to classify a song into the “correct” genre while downplaying the fact that genres mutate over time and in response to social change in terms of their musical properties. Songs claiming the same genre can sound very different if they are released years apart, and genres may revive musical traditions from the past. In this paper, I show that the performance of genre classifiers fluctuates as genres evolve. Unsatisfactory performance of the classifiers may not indicate algorithmic flaws but rather the change of genre characteristics. I demonstrate this by studying the case of Chinese Hip-Hop music. Specifically, I collected and analyzed 69,427 songs from four genres (Hip-Hop, Pop, Rock, and Folk) released on a Chinese music platform between 2009 and 2019. Using classifiers trained from the songs in different year cohorts to predict the genre of all the songs, I show how genre classifiers can be used to detect the stylistic shift in Hip-Hop that happened during this period. The paper thus offers a novel, sociological perspective on contending with the much-challenged idea of improving genre classification accuracy for its own sake. However, instead of questioning the effort, I argue that MIR research on genre classification can be helpful for studying genre as a social construct and cultural phenomenon if the pursuit of prediction performance and the cultural meaning of inaccurate prediction are carefully balanced.",
+        "pages": "337-344",
+        "abstract": "Carnatic Music is a South Indian art and devotional music practice in which melodic patterns (motifs and phrases), known as sañcāras, play a crucial structural and expressive role. We demonstrate how the combination of transposition invariant features learnt by a Complex Autoencoder (CAE) and predominant pitch tracks extracted using a Frequency-Temporal Attention Network (FTA-Net) can be used to annotate and group regions of variable-length, repeated, melodic patterns in audio recordings of multiple Carnatic Music performances. These models are trained on novel/expert-curated datasets of hundreds of Carnatic audio recordings and the extraction process tailored to account for the unique characteristics of sañcāras in Carnatic Music. Experimental results show that the proposed method is able to identify 54% of all sañcaras annotated by a professional Carnatic vocalist. Code to reproduce and interact with these results is available online.",
         "zenodo_id": null,
         "dblp_key": null,
-        "ee": "../temp_data/split_articles/000039.pdf"
+        "ee": "../temp_data/split_articles/000040.pdf"
+    },
+    {
+        "title": "Automatic Chinese National Pentatonic Modes Recognition Using Convolutional Neural Network",
+        "author": [
+            "Zhaowen Wang",
+            "Mingjin Che",
+            "Yue Yang",
+            "Wen Wu Meng",
+            "Qinyu Li",
+            "Fan Xia",
+            "Wei Li"
+        ],
+        "year": "2022",
+        "doi": null,
+        "url": null,
+        "video_url": null,
+        "poster_url": null,
+        "thumbnail_url": null,
+        "pages": "345-352",
+        "abstract": "Chinese national pentatonic modes, with five tones of Gong, Shang, Jue, Zhi and Yu as the core, play an essential role in traditional Chinese music culture. After the early twentieth century, with the development of new Chinese music, the ancient Chinese theory of scales gradually developed into a new pentatonic modes theory under the influence of western music. In this paper, we briefly introduce our self-built CNPM (Chinese National Pentatonic Modes) Dataset, then design residual convolutional neural network models to identify which TongGong system the mode belongs, the pitch of tonic, the mode pattern and the mode type from audio signals, in combination with musical domain knowledge. We use both single-task and multi-task models with three strategies for identification, and compare them with a simple template-based baseline method. In experiments, we use seven accuracy metrics to evaluate the models. The results on identifying both the tonic pitch and the pattern of mode correctly achieve an average accuracy of 69.65%. As an initial research on automatic Chinese national pentatonic modes recognition, this work will contribute to the development of multicultural music information retrieval, computational ethnomusicology and five-tone music therapy.",
+        "zenodo_id": null,
+        "dblp_key": null,
+        "ee": "../temp_data/split_articles/000041.pdf"
+    },
+    {
+        "title": "Teach Yourself Georgian Folk Songs Dataset: A Annotated Corpus Of Traditional Vocal Polyphony",
+        "author": [
+            "David Gillman",
+            "Atalay Kutlay",
+            "Uday Goyat"
+        ],
+        "year": "2022",
+        "doi": null,
+        "url": null,
+        "video_url": null,
+        "poster_url": null,
+        "thumbnail_url": null,
+        "pages": "353-360",
+        "abstract": "New datasets of non-Western traditional music contribute to the development of knowledge in MIR and allow computational techniques to inform ethnomusicology. We present an annotated dataset of traditional vocal polyphony from two regions of the Republic of Georgia with disparate musical characteristics. The audio for each song consists of four polyphonic recordings of one performance from different microphones. We present a process and workflow that we use to annotate the dataset, which takes advantage of the salience of individual voices in each recording. The process results in an $f_0$ estimate for each vocal part.",
+        "zenodo_id": null,
+        "dblp_key": null,
+        "ee": "../temp_data/split_articles/000042.pdf"
+    },
+    {
+        "title": "Adapting meter tracking models to Latin American music",
+        "author": [
+            "Lucas S Maia",
+            "Martín Rocamora",
+            "Luiz W P Biscainho",
+            "Magdalena Fuentes"
+        ],
+        "year": "2022",
+        "doi": null,
+        "url": null,
+        "video_url": null,
+        "poster_url": null,
+        "thumbnail_url": null,
+        "pages": "361-368",
+        "abstract": "Beat and downbeat tracking models have improved significantly in recent years with the introduction of deep learning methods. However, despite these improvements, several challenges remain. Particularly, the adaptation of available models to underrepresented music traditions in MIR is usually synonymous with collecting and annotating large amounts of data, which is impractical and time-consuming. Transfer learning, data augmentation, and fine-tuning techniques have been used quite successfully in related tasks and are known to alleviate this bottleneck. Furthermore, when studying these music traditions, models are not required to generalize to multiple mainstream music genres but to perform well in more constrained, homogeneous conditions. In this work, we investigate simple yet effective strategies to adapt beat and downbeat tracking models to two different Latin American music traditions and analyze the feasibility of these adaptations in real-world applications concerning the data and computational requirements. Contrary to common belief, our findings show it is possible to achieve good performance by spending just a few minutes annotating a portion of the data and training a model in a standard CPU machine, with the precise amount of resources needed depending on the task and the complexity of the dataset.",
+        "zenodo_id": null,
+        "dblp_key": null,
+        "ee": "../temp_data/split_articles/000043.pdf"
+    },
+    {
+        "title": "Critiquing Task- versus Goal-oriented Approaches: A Case for Makam Recognition",
+        "author": [
+            "Kaustuv Kanti Ganguli",
+            "Sertan Şentürk",
+            "Carlos Guedes"
+        ],
+        "year": "2022",
+        "doi": null,
+        "url": null,
+        "video_url": null,
+        "poster_url": null,
+        "thumbnail_url": null,
+        "pages": "369-376",
+        "abstract": "Computational Musicology and Music Information Retrieval (MIR) address the core musical question under study from a different perspective, often a combination of top-down vs. bottom-up approaches. However, the evaluation metrics for MIR tend to capture the model accuracy in terms of the goal. For instance, mode (melodic framework) recognition is implemented with a goal to evaluate and compare melodic analysis approaches, but it is worth investigating if at all it lends itself as one befitting proxy task. In this work, we aim to review whether the model actually learns the task it is intended for. This is particularly relevant in non-Eurogenetic music repertoires where the grammatical rules are rather prescriptive. We employ methodologies that combine domain-knowledge and data-driven optimizations as a possible way for a comprehensive understanding of these relationships. This is tested on Makam which is one of the understudied corpora in MIR. We evaluate an array of feature-engineering methods on the largest mode recognition dataset curated for Ottoman-Turkish makam music, composed of 1000 recordings in 50 makams. We adapted the time-delayed melody surfaces (TDMS) feature, which in combination with support vector machine (SVM) classifier yields 77.2% recognition accuracy, comparable to the current state-of-the-art. We also address (ethno)musicology-driven tasks with a view to gathering deeper insights into this music, such as tuning, intonation, and melodic similarity. We aim to propose avenues to extend the study to makam characterization over the mere goal of recognizing the mode, to better understand the (dis)similarity space and other plausible musically interesting facets.",
+        "zenodo_id": null,
+        "dblp_key": null,
+        "ee": "../temp_data/split_articles/000044.pdf"
+    },
+    {
+        "title": "A Dataset for Greek Traditional and Folk Music: Lyra",
+        "author": [
+            "Charilaos Papaioannou",
+            "Ioannis Valiantzas",
+            "Theodore Giannakopoulos",
+            "Maximos Kaliakatsos-Papakostas",
+            "Alexandros Potamianos"
+        ],
+        "year": "2022",
+        "doi": null,
+        "url": null,
+        "video_url": null,
+        "poster_url": null,
+        "thumbnail_url": null,
+        "pages": "377-383",
+        "abstract": "Studying under-represented music traditions under the MIR scope is crucial, not only for developing novel analysis tools, but also for unveiling musical functions that might prove useful in studying world musics. This paper presents a dataset for Greek Traditional and Folk music that includes 1570 pieces, summing in around 80 hours of data. The dataset incorporates YouTube timestamped links for retrieving audio and video, along with rich metadata information with regards to instrumentation, geography and genre, among others. The content has been collected from a Greek documentary series that is available online, where academics present music traditions of Greece with live music and dance performance during the show, along with discussions about social, cultural and musicological aspects of the presented music. Therefore, this procedure has resulted in a significant wealth of descriptions regarding a variety of aspects, such as musical genre, places of origin and musical instruments. In addition, the audio recordings were performed under strict production-level specifications, in terms of recording equipment, leading to very clean and homogeneous audio content. In this work, apart from presenting the dataset in detail, we propose a baseline deep-learning classification approach to recognize the involved musicological attributes. The dataset, the baseline classification methods and the models are provided in public repositories. Future directions for further refining the dataset are also discussed.",
+        "zenodo_id": null,
+        "dblp_key": null,
+        "ee": "../temp_data/split_articles/000045.pdf"
     }
 ]
