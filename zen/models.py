@@ -31,9 +31,10 @@ class Zenodo(Record):
                  conference_url, imprint_place, access_right, license,
                  upload_type='publication', publication_type='conferencepaper',
                  communities=None, imprint_publisher='ISMIR',
-                 description='[TODO] Add abstract here.', doi=None):
+                 description='[TODO] Add abstract here.', doi=None, keywords=None):
 
         communities = communities or [{'identifier': 'ismir'}]
+        keywords = keywords or ['ismir']
         super().__init__(
             upload_type=upload_type, publication_type=publication_type,
             title=title, creators=creators, partof_pages=partof_pages,
@@ -42,7 +43,7 @@ class Zenodo(Record):
             partof_title=partof_title, publication_date=publication_date,
             conference_acronym=conference_acronym, conference_url=conference_url,
             imprint_publisher=imprint_publisher, imprint_place=imprint_place,
-            access_right=access_right, license=license, doi=doi)
+            access_right=access_right, license=license, doi=doi, keywords=keywords)
 
 
 class IsmirPaper(Record):
