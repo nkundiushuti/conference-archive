@@ -85,7 +85,7 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
             filename = response.get('files')[0].get('checksum')
             if '_' in filename:
                 version = int(filename.split('_')[-1].split('.pdf')[0])
-            upload_response = zen.upload_file(zid, ismir_paper['ee'], version+1, stage=stage)
+            upload_response = zen.upload_file(zid, ismir_paper['ee'], version=version+1, stage=stage)
             ismir_paper['ee'] = upload_response['links']['download']
             print('new version')
 
