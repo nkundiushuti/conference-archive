@@ -237,8 +237,7 @@ def edit(zid, stage=DEV):
         "actions/edit?access_token={token}".format(zid=zid,
                                                       token=TOKENS[stage],
                                                       host=HOSTS[stage]))
-    if resp.status_code >= 300:
-        raise ZenodoApiError(resp.json())
+
     return resp
 
 @verify_token
