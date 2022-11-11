@@ -68,7 +68,14 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
     if old_zenodo is not None:
         zid, checksum = zen.new_version_for_id(int(old_zenodo['zenodo_id']), stage=stage)
         new_checksum = hashlib.md5(open(ismir_paper['ee'],'rb').read()).hexdigest()
-        import pdb;pdb.set_trace()
+        if checksum != new_checksum:
+              # TODO: Should be a package function
+            zenodo_meta = zen.models.merge(
+                zen.models.Zenodo, ismir_paper, conf,
+                creators=zen.models.author_to_creators(ismir_paper['author']),
+                partof_pages=ismir_paper['pages'],
+                description=ismir_paper['abstract'])
+            import pdb;pdb.set_trace()
 
 
 
