@@ -66,56 +66,48 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
     conf = zen.models.IsmirConference(**conferences[ismir_paper['year']])
 
     if old_zenodo is not None:
-        import pdb;pdb.set_trace()
-        zid, checksum, version = zen.new_version_for_id(int(old_zenodo['zenodo_id']), stage=stage)
-        new_checksum = hashlib.md5(open(ismir_paper['ee'],'rb').read()).hexdigest()
-        if checksum == new_checksum:
+        response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
+        if response.status_code >= 300:
+            print(zen.ZenodoApiError(resp.json()))
+            zid, response = zen.new_version_for_id(int(old_zenodo['zenodo_id']), stage=stage)
+            new_version = True
+        else:
             zid = int(old_zenodo['zenodo_id'])
-            edit_response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
-        else: #there is already an existing version
+            new_version = False
+
+        checksum = response.get('files')[0].get('checksum')
+        new_checksum = hashlib.md5(open(ismir_paper['ee'],'rb').read()).hexdigest()
+        if newversion or checksum != new_checksum:
+            version = 0
+            filename = resp.json().get('files')[0].get('checksum')
+            if '_' in filename:
+                version = int(filename.split('_')[-1].split('.pdf')[0])
             upload_response = zen.upload_file(zid, ismir_paper['ee'], version+1, stage=stage)
-            import pdb;pdb.set_trace()
+            ismir_paper['ee'] = upload_response['links']['download']
+        else:
+            edit_response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
+
+        import pdb;pdb.set_trace()
     else:
         zid = zen.create_id(stage=stage)
-        if not dry_run:
-            upload_response = zen.upload_file(zid, ismir_paper['ee'], stage=stage)
-            ismir_paper['ee'] = upload_response['links']['download']
+        upload_response = zen.upload_file(zid, ismir_paper['ee'], stage=stage)
+        ismir_paper['ee'] = upload_response['links']['download']
 
 
+    # TODO: Should be a package function
+    zenodo_meta = zen.models.merge(
+        zen.models.Zenodo, ismir_paper, conf,
+        creators=zen.models.author_to_creators(ismir_paper['author']),
+        partof_pages=ismir_paper['pages'],
+        description=ismir_paper['abstract'])
 
+    zen.update_metadata(zid, zenodo_meta.dropna(), stage=stage)
+    import pdb;pdb.set_trace()
+    publish_response = zen.publish(zid, stage=stage)
 
-    # if old_zenodo is not None:
-    #     edit_response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
-    #     message = ' \nA newer version of this paper has been uploaded at: https://zenodo.org/record/'+str(zid)
-    #     old_zenodo_meta = zen.models.merge(
-    #         zen.models.Zenodo, old_zenodo, conf,
-    #         creators=zen.models.author_to_creators(ismir_paper['author']),
-    #         partof_pages=ismir_paper['pages'],
-    #         description=ismir_paper['abstract']+message)
-    #     old_zenodo_meta['keywords'].append('obsolete')
-    #     if 'doi' in old_zenodo_meta: del old_zenodo_meta['doi']
-    #     if 'doi_url' in old_zenodo_meta: del old_zenodo_meta['doi_url']
-    #     if 'zenodo_id' in old_zenodo_meta: del old_zenodo_meta['zenodo_id']
-    #     import pdb;pdb.set_trace()
-    #     zen.update_metadata(int(old_zenodo['zenodo_id']), old_zenodo_meta.dropna(), stage=stage)
-    #     publish_response = zen.publish(int(old_zenodo['zenodo_id']), stage=stage)
-
-    if not dry_run:
-
-        # TODO: Should be a package function
-        zenodo_meta = zen.models.merge(
-            zen.models.Zenodo, ismir_paper, conf,
-            creators=zen.models.author_to_creators(ismir_paper['author']),
-            partof_pages=ismir_paper['pages'],
-            description=ismir_paper['abstract'])
-
-        zen.update_metadata(zid, zenodo_meta.dropna(), stage=stage)
-        import pdb;pdb.set_trace()
-        publish_response = zen.publish(zid, stage=stage)
-
-        ismir_paper.update(doi=publish_response['doi'],
-                           url=publish_response['doi_url'],
-                           zenodo_id=zid)
+    ismir_paper.update(doi=publish_response['doi'],
+                       url=publish_response['doi_url'],
+                       zenodo_id=zid)
 
     return ismir_paper
 

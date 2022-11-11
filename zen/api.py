@@ -118,14 +118,9 @@ def new_version_for_id(zid, stage=DEV):
     # Extract the new zenodo_id from url
     new_id = int(newversion_draft_url.split('/')[-1])
 
-    version = 0
-    filename = resp.json().get('files')[0].get('checksum')
-    if '_' in filename:
-        version = int(filename.split('_')[-1].split('.pdf')[0])
-
     if resp.status_code >= 300:
         raise ZenodoApiError(resp.json())
-    return new_id, resp.json().get('files')[0].get('checksum'), version
+    return new_id, resp
 
 @verify_token
 def upload_file(zid, filepath, fp=None, version=None, stage=DEV):
