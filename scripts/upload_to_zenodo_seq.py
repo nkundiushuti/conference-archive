@@ -31,6 +31,7 @@ import logging
 import os
 import random
 import sys
+import hashlib
 
 ### relative imports from parent
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
