@@ -68,7 +68,8 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
     if old_zenodo is not None:
         response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
         if response.status_code >= 300:
-            print(response.json())
+            response = response.json()
+            print(response)
             zid, response = zen.new_version_for_id(int(old_zenodo['zenodo_id']), stage=stage)
             new_version = True
         else:
