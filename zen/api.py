@@ -153,6 +153,7 @@ def upload_file(zid, filepath, fp=None, version=None, stage=DEV):
 
     files = {'file': (basename, fp or open(filepath, 'rb'),
                       'application/{}'.format(fext))}
+    import pdb;pdb.set_trace()
     resp = requests.post(
         "{host}/api/deposit/depositions/{zid}/"
         "files?access_token={token}".format(zid=zid, token=TOKENS[stage],
@@ -237,7 +238,6 @@ def edit(zid, stage=DEV):
         "actions/edit?access_token={token}".format(zid=zid,
                                                       token=TOKENS[stage],
                                                       host=HOSTS[stage]))
-
     return resp
 
 @verify_token
