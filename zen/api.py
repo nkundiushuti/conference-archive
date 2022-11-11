@@ -107,7 +107,7 @@ def new_version_for_id(zid, stage=DEV):
     ZenodoApiError on failure
     """
     resp = requests.post(
-        '{host}/api/deposit/depositions/' + zid + 'actions/newversion?access_token={token}'
+        '{host}/api/deposit/depositions/' + str(zid) + '/actions/newversion?access_token={token}'
         .format(host=HOSTS[stage], token=TOKENS[stage]),
         data="{}", headers=HEADERS)
 
