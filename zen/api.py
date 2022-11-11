@@ -118,13 +118,17 @@ def new_version_for_id(zid, stage=DEV):
     # Extract the new zenodo_id from url
     new_id = int(newversion_draft_url.split('/')[-1])
 
+    version = 0
+    filename = resp.json().get('files')[0].get('checksum')
+    if '_' in filename:
+        version = int(filename.split('_')[-1].split('.pdf')[0])
+
     if resp.status_code >= 300:
         raise ZenodoApiError(resp.json())
-    return new_id, resp.json().get('files')[0].get('checksum')
-
+    return new_id, resp.json().get('files')[0].get('checksum'), version
 
 @verify_token
-def upload_file(zid, filepath, fp=None, stage=DEV):
+def upload_file(zid, filepath, fp=None, version=None, stage=DEV):
     '''Upload a filepath (local or URL) to zenodo, given an id.
 
     Parameters
@@ -143,7 +147,10 @@ def upload_file(zid, filepath, fp=None, stage=DEV):
     response : dict
         Response object from Zenodo.
     '''
-    basename = os.path.basename(filepath)
+    if version is not None:
+        basename = os.path.basename(filepath).replace('.pdf','_'+str(version)+'.pdf')
+    else:
+        basename = os.path.basename(filepath)
     fext = os.path.splitext(filepath)[-1].strip('.')
     if filepath.startswith('http') and fp is None:
         res = requests.get(filepath)

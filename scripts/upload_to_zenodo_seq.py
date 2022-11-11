@@ -66,13 +66,14 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
     conf = zen.models.IsmirConference(**conferences[ismir_paper['year']])
 
     if old_zenodo is not None:
-
-        zid, checksum = zen.new_version_for_id(int(old_zenodo['zenodo_id']), stage=stage)
+        import pdb;pdb.set_trace()
+        zid, checksum, version = zen.new_version_for_id(int(old_zenodo['zenodo_id']), stage=stage)
         new_checksum = hashlib.md5(open(ismir_paper['ee'],'rb').read()).hexdigest()
         if checksum == new_checksum:
             zid = int(old_zenodo['zenodo_id'])
             edit_response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
         else: #there is already an existing version
+            upload_response = zen.upload_file(zid, ismir_paper['ee'], version+1, stage=stage)
             import pdb;pdb.set_trace()
     else:
         zid = zen.create_id(stage=stage)
