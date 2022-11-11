@@ -64,30 +64,31 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
     ismir_paper = zen.models.IsmirPaper(**ismir_paper)
     conf = zen.models.IsmirConference(**conferences[ismir_paper['year']])
 
-    if not ismir_paper['zenodo_id']:
+    if not ismir_paper['zenodo_id'] and old_zenodo is None :
         # New submission
         zid = zen.create_id(stage=stage)
     else:
         # Update mode
         #  * If the checksum is different, re-upload the pdf
         #  * Update the metadata regardless
-        publish_response = zen.new_version_for_id(int(old_zenodo['zenodo_id']), stage=stage)
+        zid = zen.new_version_for_id(int(old_zenodo['zenodo_id']), stage=stage)
+        edit_response = zen.edit(zid, stage=stage)
 
-    if old_zenodo is not None:
-        edit_response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
-        message = ' \nA newer version of this paper has been uploaded at: https://zenodo.org/record/'+str(zid)
-        old_zenodo_meta = zen.models.merge(
-            zen.models.Zenodo, old_zenodo, conf,
-            creators=zen.models.author_to_creators(ismir_paper['author']),
-            partof_pages=ismir_paper['pages'],
-            description=ismir_paper['abstract']+message)
-        old_zenodo_meta['keywords'].append('obsolete')
-        if 'doi' in old_zenodo_meta: del old_zenodo_meta['doi']
-        if 'doi_url' in old_zenodo_meta: del old_zenodo_meta['doi_url']
-        if 'zenodo_id' in old_zenodo_meta: del old_zenodo_meta['zenodo_id']
-        import pdb;pdb.set_trace()
-        zen.update_metadata(int(old_zenodo['zenodo_id']), old_zenodo_meta.dropna(), stage=stage)
-        publish_response = zen.publish(int(old_zenodo['zenodo_id']), stage=stage)
+    # if old_zenodo is not None:
+    #     edit_response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
+    #     message = ' \nA newer version of this paper has been uploaded at: https://zenodo.org/record/'+str(zid)
+    #     old_zenodo_meta = zen.models.merge(
+    #         zen.models.Zenodo, old_zenodo, conf,
+    #         creators=zen.models.author_to_creators(ismir_paper['author']),
+    #         partof_pages=ismir_paper['pages'],
+    #         description=ismir_paper['abstract']+message)
+    #     old_zenodo_meta['keywords'].append('obsolete')
+    #     if 'doi' in old_zenodo_meta: del old_zenodo_meta['doi']
+    #     if 'doi_url' in old_zenodo_meta: del old_zenodo_meta['doi_url']
+    #     if 'zenodo_id' in old_zenodo_meta: del old_zenodo_meta['zenodo_id']
+    #     import pdb;pdb.set_trace()
+    #     zen.update_metadata(int(old_zenodo['zenodo_id']), old_zenodo_meta.dropna(), stage=stage)
+    #     publish_response = zen.publish(int(old_zenodo['zenodo_id']), stage=stage)
 
     if not dry_run:
         upload_response = zen.upload_file(zid, ismir_paper['ee'], stage=stage)
@@ -101,6 +102,7 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
             description=ismir_paper['abstract'])
 
         zen.update_metadata(zid, zenodo_meta.dropna(), stage=stage)
+        import pdb;pdb.set_trace()
         publish_response = zen.publish(zid, stage=stage)
 
         ismir_paper.update(doi=publish_response['doi'],

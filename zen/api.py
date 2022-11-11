@@ -113,7 +113,6 @@ def new_version_for_id(zid, stage=DEV):
 
     if resp.status_code >= 300:
         raise ZenodoApiError(resp.json())
-    import pdb;pdb.set_trace()
     return resp.json().get('id')
 
 
