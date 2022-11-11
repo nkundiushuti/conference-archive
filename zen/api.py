@@ -110,16 +110,17 @@ def new_version_for_id(zid, stage=DEV):
         '{host}/api/deposit/depositions/{zid}/actions/newversion?access_token={token}'
         .format(zid=zid, host=HOSTS[stage], token=TOKENS[stage]),
         data="{}", headers=HEADERS)
+
     # You have to use the new version's deposit link
     newversion_draft_url = resp.json()['links']['latest_draft']
 
-    # There is a new "deposition_id" now:
-    # Extract deposition_id from url
-    new_id = newversion_draft_url.split('/')[-1]
-    import pdb;pdb.set_trace()
+    # There is a new "zenodo_id" now:
+    # Extract the new zenodo_id from url
+    new_id = int(newversion_draft_url.split('/')[-1])
+
     if resp.status_code >= 300:
         raise ZenodoApiError(resp.json())
-    return resp.json().get('id')
+    return new_id
 
 
 @verify_token
