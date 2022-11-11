@@ -89,6 +89,8 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
                 ismir_paper['ee'] = upload_response['links']['download']
                 print('new version')
             else:
+                zid = int(old_zenodo['zenodo_id'])
+                response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
                 ismir_paper['ee'] = old_zenodo['ee']
 
     else:
