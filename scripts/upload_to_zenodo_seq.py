@@ -85,7 +85,7 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
             if '_' in filename:
                 version = int(filename.split('_')[-1].split('.pdf')[0])
             upload_response = zen.reupload_file(zid, ismir_paper['ee'], version=version+1, stage=stage)
-            if upload_response.get('status') != 400:
+            if upload_response.get('status') not in [400, 403]:
                 ismir_paper['ee'] = upload_response['links']['download']
                 print('new version')
             else:
