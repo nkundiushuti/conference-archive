@@ -197,7 +197,8 @@ def reupload_file(zid, filepath, fp=None, version=None, stage=DEV):
         "files?access_token={token}".format(zid=zid, token=TOKENS[stage],
                                             host=HOSTS[stage]),
         files=files)
-    if resp.status_code >= 300 and resp.status_code != 400:
+    if resp.status_code >= 300 and resp.status_code not in [400]:
+        import pdb;pdb.set_trace()
         raise ZenodoApiError(resp.json())
 
     return resp.json()
