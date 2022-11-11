@@ -84,14 +84,17 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
                 version = int(filename.split('_')[-1].split('.pdf')[0])
             upload_response = zen.upload_file(zid, ismir_paper['ee'], version+1, stage=stage)
             ismir_paper['ee'] = upload_response['links']['download']
+            print('new version')
         else:
             edit_response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
+            print('edit')
 
         import pdb;pdb.set_trace()
     else:
         zid = zen.create_id(stage=stage)
         upload_response = zen.upload_file(zid, ismir_paper['ee'], stage=stage)
         ismir_paper['ee'] = upload_response['links']['download']
+        print('create')
 
 
     # TODO: Should be a package function
