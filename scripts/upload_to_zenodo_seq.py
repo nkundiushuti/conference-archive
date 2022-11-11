@@ -71,9 +71,7 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
         # Update mode
         #  * If the checksum is different, re-upload the pdf
         #  * Update the metadata regardless
-        pass
-
-
+        publish_response = zen.new_version_for_id(zid, stage=stage)
 
     if old_zenodo is not None:
         edit_response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
@@ -89,6 +87,7 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
         if 'zenodo_id' in old_zenodo_meta: del old_zenodo_meta['zenodo_id']
         import pdb;pdb.set_trace()
         zen.update_metadata(int(old_zenodo['zenodo_id']), old_zenodo_meta.dropna(), stage=stage)
+        publish_response = zen.publish(int(old_zenodo['zenodo_id']), stage=stage)
 
     if not dry_run:
         upload_response = zen.upload_file(zid, ismir_paper['ee'], stage=stage)
@@ -117,6 +116,7 @@ def archive(proceedings, conferences, stage=zen.DEV, num_cpus=-2, verbose=0, dry
         old_zenodo = None
         if output is not None:
             old_zenodo = [o for o in output if o['title']==paper['title']]
+            paper['zenodo_id'] = old_zenodo['zenodo_id']
         res = upload(paper, conferences, stage, old_zenodo[0], dry_run)
         if verbose>0:
             print(res)

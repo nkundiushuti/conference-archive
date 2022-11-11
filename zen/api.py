@@ -87,6 +87,35 @@ def create_id(stage=DEV):
 
     return resp.json().get('id')
 
+@verify_token
+def new_version_for_id(zid, stage=DEV):
+    """Create a new version for an existing Zenodo ID.
+
+    Parameters
+    ----------
+    zid : int
+    stage : str
+        One of [dev, prod]; defines the deployment area to use.
+
+    Returns
+    -------
+    zid : str or None
+        Returns a string ID on success, or None.
+
+    Raises
+    ------
+    ZenodoApiError on failure
+    """
+    resp = requests.post(
+        '{host}/api/deposit/depositions/' + zid + 'actions/newversion?access_token={token}'
+        .format(host=HOSTS[stage], token=TOKENS[stage]),
+        data="{}", headers=HEADERS)
+
+    if resp.status_code >= 300:
+        raise ZenodoApiError(resp.json())
+    import pdb;pdb.set_trace()
+    return resp.json().get('id')
+
 
 @verify_token
 def upload_file(zid, filepath, fp=None, stage=DEV):
