@@ -77,11 +77,10 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
             zid = int(old_zenodo['zenodo_id'])
             new_version = False
 
-
         response = response.json()
         checksum = response.get('files')[0].get('checksum')
         new_checksum = hashlib.md5(open(ismir_paper['ee'],'rb').read()).hexdigest()
-        if newversion or checksum != new_checksum:
+        if new_version or checksum != new_checksum:
             version = 0
             filename = resp.json().get('files')[0].get('checksum')
             if '_' in filename:
