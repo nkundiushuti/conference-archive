@@ -92,6 +92,7 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
                 zid = int(old_zenodo['zenodo_id'])
                 response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
                 ismir_paper['ee'] = old_zenodo['ee']
+                print('edit')
 
     else:
         zid = zen.create_id(stage=stage)
