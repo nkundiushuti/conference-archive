@@ -107,8 +107,8 @@ def new_version_for_id(zid, stage=DEV):
     ZenodoApiError on failure
     """
     resp = requests.post(
-        ' http://{host}/api/deposit/depositions/' + str(zid) + '/actions/newversion?access_token={token}'
-        .format(host=HOSTS[stage], token=TOKENS[stage]),
+        '{host}/api/deposit/depositions/{zid}/actions/newversion?access_token={token}'
+        .format(zid=zid, host=HOSTS[stage], token=TOKENS[stage]),
         data="{}", headers=HEADERS)
 
     if resp.status_code >= 300:
