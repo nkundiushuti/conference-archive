@@ -66,27 +66,23 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
     conf = zen.models.IsmirConference(**conferences[ismir_paper['year']])
 
     if old_zenodo is not None:
+        edit_response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
+        import pdb;pdb.set_trace()
         zid, checksum = zen.new_version_for_id(int(old_zenodo['zenodo_id']), stage=stage)
         new_checksum = hashlib.md5(open(ismir_paper['ee'],'rb').read()).hexdigest()
-        if checksum != new_checksum:
-              # TODO: Should be a package function
-            zenodo_meta = zen.models.merge(
-                zen.models.Zenodo, ismir_paper, conf,
-                creators=zen.models.author_to_creators(ismir_paper['author']),
-                partof_pages=ismir_paper['pages'],
-                description=ismir_paper['abstract'])
+        if checksum == new_checksum:
+            zid = int(old_zenodo['zenodo_id'])
+
+        else: #there is already an existing version
             import pdb;pdb.set_trace()
-
-
-
-    if not ismir_paper['zenodo_id'] and old_zenodo is None :
-        # New submission
-        zid = zen.create_id(stage=stage)
     else:
-        # Update mode
-        #  * If the checksum is different, re-upload the pdf
-        #  * Update the metadata regardless
-        pass
+        zid = zen.create_id(stage=stage)
+        if not dry_run:
+            upload_response = zen.upload_file(zid, ismir_paper['ee'], stage=stage)
+            ismir_paper['ee'] = upload_response['links']['download']
+
+
+
 
     # if old_zenodo is not None:
     #     edit_response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
@@ -105,8 +101,6 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
     #     publish_response = zen.publish(int(old_zenodo['zenodo_id']), stage=stage)
 
     if not dry_run:
-        upload_response = zen.upload_file(zid, ismir_paper['ee'], stage=stage)
-        ismir_paper['ee'] = upload_response['links']['download']
 
         # TODO: Should be a package function
         zenodo_meta = zen.models.merge(
@@ -131,9 +125,10 @@ def archive(proceedings, conferences, stage=zen.DEV, num_cpus=-2, verbose=0, dry
     for paper in proceedings:
         old_zenodo = None
         if output is not None:
-            old_zenodo = [o for o in output if o['title']==paper['title']]
-            paper['zenodo_id'] = old_zenodo[0]['zenodo_id']
-        res = upload(paper, conferences, stage, old_zenodo[0], dry_run)
+            old_zenodo_list = [o for o in output if o['title']==paper['title']]
+            if len(old_zenodo_list)>0:
+                old_zenodo = old_zenodo_list[0]
+        res = upload(paper, conferences, stage, old_zenodo, dry_run)
         if verbose>0:
             print(res)
         final.append(res)
