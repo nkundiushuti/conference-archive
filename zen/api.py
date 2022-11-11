@@ -123,7 +123,46 @@ def new_version_for_id(zid, stage=DEV):
     return new_id, resp
 
 @verify_token
-def upload_file(zid, filepath, fp=None, version=None, stage=DEV):
+def upload_file(zid, filepath, fp=None, stage=DEV):
+    '''Upload a filepath (local or URL) to zenodo, given an id.
+
+    Parameters
+    ----------
+    zid : int
+        Zenodo identifier
+
+    filepath : str
+        Path to a local file or a URL.
+
+    fp : bytestring or file iterator, or None
+        Optionally, the file pointer for uploading.
+
+    Returns
+    -------
+    response : dict
+        Response object from Zenodo.
+    '''
+    basename = os.path.basename(filepath)
+    fext = os.path.splitext(filepath)[-1].strip('.')
+    if filepath.startswith('http') and fp is None:
+        res = requests.get(filepath)
+        fp = io.BytesIO(res.content)
+
+    files = {'file': (basename, fp or open(filepath, 'rb'),
+                      'application/{}'.format(fext))}
+    resp = requests.post(
+        "{host}/api/deposit/depositions/{zid}/"
+        "files?access_token={token}".format(zid=zid, token=TOKENS[stage],
+                                            host=HOSTS[stage]),
+        files=files)
+
+    if resp.status_code >= 300:
+        raise ZenodoApiError(resp.json())
+
+    return resp.json()
+
+@verify_token
+def reupload_file(zid, filepath, fp=None, version=None, stage=DEV):
     '''Upload a filepath (local or URL) to zenodo, given an id.
 
     Parameters
@@ -158,12 +197,10 @@ def upload_file(zid, filepath, fp=None, version=None, stage=DEV):
         "files?access_token={token}".format(zid=zid, token=TOKENS[stage],
                                             host=HOSTS[stage]),
         files=files)
-    if resp.status_code >= 300:
-        import pdb;pdb.set_trace()
+    if resp.status_code >= 300 and resp.status_code != 400:
         raise ZenodoApiError(resp.json())
 
     return resp.json()
-
 
 @verify_token
 def update_metadata(zid, metadata, stage=DEV):
