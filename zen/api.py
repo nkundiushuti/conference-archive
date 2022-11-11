@@ -159,6 +159,7 @@ def upload_file(zid, filepath, fp=None, version=None, stage=DEV):
                                             host=HOSTS[stage]),
         files=files)
     if resp.status_code >= 300:
+        import pdb;pdb.set_trace()
         raise ZenodoApiError(resp.json())
 
     return resp.json()
