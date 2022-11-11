@@ -116,7 +116,7 @@ def archive(proceedings, conferences, stage=zen.DEV, num_cpus=-2, verbose=0, dry
         old_zenodo = None
         if output is not None:
             old_zenodo = [o for o in output if o['title']==paper['title']]
-            paper['zenodo_id'] = old_zenodo['zenodo_id']
+            paper['zenodo_id'] = old_zenodo[0]['zenodo_id']
         res = upload(paper, conferences, stage, old_zenodo[0], dry_run)
         if verbose>0:
             print(res)
