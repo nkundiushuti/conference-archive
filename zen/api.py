@@ -117,7 +117,7 @@ def new_version_for_id(zid, stage=DEV):
     # There is a new "zenodo_id" now:
     # Extract the new zenodo_id from url
     new_id = int(newversion_draft_url.split('/')[-1])
-
+    import pdb;pdb.set_trace()
     if resp.status_code >= 300:
         raise ZenodoApiError(resp.json())
     return new_id
