@@ -239,7 +239,7 @@ def edit(zid, stage=DEV):
                                                       host=HOSTS[stage]))
     if resp.status_code >= 300:
         raise ZenodoApiError(resp.json())
-    return resp.json()
+    return resp
 
 @verify_token
 def get(zid, stage=DEV):
