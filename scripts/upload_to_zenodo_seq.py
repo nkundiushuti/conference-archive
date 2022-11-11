@@ -76,6 +76,7 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
 
 
     if old_zenodo is not None:
+        edit_response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
         message = ' \nA newer version of this paper has been uploaded at: https://zenodo.org/record/'+str(zid)
         old_zenodo_meta = zen.models.merge(
             zen.models.Zenodo, old_zenodo, conf,

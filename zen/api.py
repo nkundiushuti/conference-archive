@@ -180,6 +180,29 @@ def publish(zid, stage=DEV):
         raise ZenodoApiError(resp.json())
     return resp.json()
 
+@verify_token
+def edit(zid, stage=DEV):
+    '''Turn to editing mode a staged deposition for a given Zenodo ID.
+
+    Parameters
+    ----------
+    zid : int
+        Requested Zenodo ID.
+
+    Returns
+    -------
+    response : dict
+        Zenodo repsonse object.
+        See ... for more details.
+    '''
+    resp = requests.post(
+        "{host}/api/deposit/depositions/{zid}/"
+        "actions/edit?access_token={token}".format(zid=zid,
+                                                      token=TOKENS[stage],
+                                                      host=HOSTS[stage]))
+    if resp.status_code >= 300:
+        raise ZenodoApiError(resp.json())
+    return resp.json()
 
 @verify_token
 def get(zid, stage=DEV):
