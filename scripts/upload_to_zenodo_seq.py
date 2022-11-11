@@ -42,7 +42,7 @@ import zen.models
 logger = logging.getLogger("upload_to_zenodo")
 
 
-def upload(ismir_paper, conferences, stage=zen.DEV):
+def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=False):
     """Upload a file / metadata pair to a Zenodo stage.
 
     Parameters
@@ -73,31 +73,52 @@ def upload(ismir_paper, conferences, stage=zen.DEV):
         #  * Update the metadata regardless
         pass
 
-    upload_response = zen.upload_file(zid, ismir_paper['ee'], stage=stage)
-    ismir_paper['ee'] = upload_response['links']['download']
 
-    # TODO: Should be a package function
-    zenodo_meta = zen.models.merge(
-        zen.models.Zenodo, ismir_paper, conf,
-        creators=zen.models.author_to_creators(ismir_paper['author']),
-        partof_pages=ismir_paper['pages'],
-        description=ismir_paper['abstract'])
 
-    zen.update_metadata(zid, zenodo_meta.dropna(), stage=stage)
-    publish_response = zen.publish(zid, stage=stage)
+    if old_zenodo is not None:
+        message = ' \nA newer version of this paper has been uploaded at: https://zenodo.org/record/'+str(zid)
+        old_zenodo_meta = zen.models.merge(
+            zen.models.Zenodo, old_zenodo, conf,
+            creators=zen.models.author_to_creators(ismir_paper['author']),
+            partof_pages=ismir_paper['pages'],
+            description=ismir_paper['abstract']+message)
+        old_zenodo_meta['keywords'].append('obsolete')
+        if 'doi' in old_zenodo_meta: del old_zenodo_meta['doi']
+        if 'doi_url' in old_zenodo_meta: del old_zenodo_meta['doi_url']
+        if 'zenodo_id' in old_zenodo_meta: del old_zenodo_meta['zenodo_id']
+        import pdb;pdb.set_trace()
+        zen.update_metadata(int(old_zenodo['zenodo_id']), old_zenodo_meta.dropna(), stage=stage)
 
-    ismir_paper.update(doi=publish_response['doi'],
-                       url=publish_response['doi_url'],
-                       zenodo_id=zid)
+    if not dry_run:
+        upload_response = zen.upload_file(zid, ismir_paper['ee'], stage=stage)
+        ismir_paper['ee'] = upload_response['links']['download']
+
+        # TODO: Should be a package function
+        zenodo_meta = zen.models.merge(
+            zen.models.Zenodo, ismir_paper, conf,
+            creators=zen.models.author_to_creators(ismir_paper['author']),
+            partof_pages=ismir_paper['pages'],
+            description=ismir_paper['abstract'])
+
+        zen.update_metadata(zid, zenodo_meta.dropna(), stage=stage)
+        publish_response = zen.publish(zid, stage=stage)
+
+        ismir_paper.update(doi=publish_response['doi'],
+                           url=publish_response['doi_url'],
+                           zenodo_id=zid)
 
     return ismir_paper
 
 
-def archive(proceedings, conferences, stage=zen.DEV, num_cpus=-2, verbose=0):
+def archive(proceedings, conferences, stage=zen.DEV, num_cpus=-2, verbose=0, dry_run=False, output=None):
     final = []
     for paper in proceedings:
-        res = upload(paper, conferences, stage)
-        print(res)
+        old_zenodo = None
+        if output is not None:
+            old_zenodo = [o for o in output if o['title']==paper['title']]
+        res = upload(paper, conferences, stage, old_zenodo[0], dry_run)
+        if verbose>0:
+            print(res)
         final.append(res)
     return final
 
@@ -128,16 +149,23 @@ if __name__ == '__main__':
     parser.add_argument("--max_items",
                         metavar="max_items", type=int, default=None,
                         help="Maximum number of items to upload.")
+    parser.add_argument("--dry_run",
+                        action='store_true',
+                        help="Dry run (without uploading anything)")
     args = parser.parse_args()
     proceedings = json.load(open(args.proceedings)) # 'encoding' = 'utf-8' might need to be added based on the encoding
     conferences = json.load(open(args.conferences)) 
+    if os.path.exists(args.output_file):
+        output = json.load(open(args.output_file))
+    else:
+        output = None
 
     # Subsample for staging
     if args.max_items is not None:
         random.shuffle(proceedings)
         proceedings = proceedings[:args.max_items]
 
-    results = archive(proceedings, conferences, args.stage, args.num_cpus, args.verbose)
+    results = archive(proceedings, conferences, args.stage, args.num_cpus, args.verbose, args.dry_run, output)
 
     with open(args.output_file, 'w') as fp:
         json.dump(results, fp, indent=2)
