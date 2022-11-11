@@ -82,7 +82,7 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
         new_checksum = hashlib.md5(open(ismir_paper['ee'],'rb').read()).hexdigest()
         if new_version or checksum != new_checksum:
             version = 0
-            filename = resp.json().get('files')[0].get('checksum')
+            filename = reponse.get('files')[0].get('checksum')
             if '_' in filename:
                 version = int(filename.split('_')[-1].split('.pdf')[0])
             upload_response = zen.upload_file(zid, ismir_paper['ee'], version+1, stage=stage)
