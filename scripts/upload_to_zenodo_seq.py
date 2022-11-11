@@ -102,7 +102,7 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
         description=ismir_paper['abstract'])
 
     zen.update_metadata(zid, zenodo_meta.dropna(), stage=stage)
-    import pdb;pdb.set_trace()
+
     publish_response = zen.publish(zid, stage=stage)
 
     ismir_paper.update(doi=publish_response['doi'],
