@@ -71,7 +71,7 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
         # Update mode
         #  * If the checksum is different, re-upload the pdf
         #  * Update the metadata regardless
-        publish_response = zen.new_version_for_id(zid, stage=stage)
+        publish_response = zen.new_version_for_id(int(old_zenodo['zenodo_id']), stage=stage)
 
     if old_zenodo is not None:
         edit_response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
