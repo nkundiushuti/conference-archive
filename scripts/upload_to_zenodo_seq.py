@@ -64,6 +64,10 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
     ismir_paper = zen.models.IsmirPaper(**ismir_paper)
     conf = zen.models.IsmirConference(**conferences[ismir_paper['year']])
 
+    if old_zenodo is not None:
+        zid = zen.new_version_for_id(int(old_zenodo['zenodo_id']), stage=stage)
+
+
     if not ismir_paper['zenodo_id'] and old_zenodo is None :
         # New submission
         zid = zen.create_id(stage=stage)
@@ -71,8 +75,11 @@ def upload(ismir_paper, conferences, stage=zen.DEV, old_zenodo=None, dry_run=Fal
         # Update mode
         #  * If the checksum is different, re-upload the pdf
         #  * Update the metadata regardless
-        zid = zen.new_version_for_id(int(old_zenodo['zenodo_id']), stage=stage)
+        zid, checksum = zen.new_version_for_id(int(old_zenodo['zenodo_id']), stage=stage)
         #edit_response = zen.edit(zid, stage=stage)
+
+        new_checksum = hashlib.md5(open(ismir_paper['ee'],'rb').read()).hexdigest()
+        import pdb;pdb.set_trace()
 
     # if old_zenodo is not None:
     #     edit_response = zen.edit(int(old_zenodo['zenodo_id']), stage=stage)
