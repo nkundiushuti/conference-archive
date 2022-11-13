@@ -2,7 +2,7 @@
 
 This readme explains the process of migrating proceedings and information for ISMIR 2022 conference to persistent web properties for posterity. Please look at https://github.com/ismir/conference-archive/blob/master/README.md to get an overall understanding of the workflow. 
 
-For any questions about these scripts (2022 edition), please write to Ajay Srinivasamurthy at [ajays.murthy@upf.edu](mailto:ajays.murthy@upf.edu)
+For any questions about these scripts (2022 edition), please write to Ajay Srinivasamurthy at [ajays.murthy@upf.edu](mailto:ajays.murthy@upf.edu) and Marius Miron [marius.miron@upf.edu](mailto:marius.miron@upf.edu)
 
 ## Conference metadata
 The conference metadata for ISMIR 2022 was generated manually and it has been added to https://github.com/ismir/conference-archive/blob/master/database/conferences.json This file is an input to the steps that follow. 
