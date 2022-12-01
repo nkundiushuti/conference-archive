@@ -715,12 +715,12 @@
       "Magdalena Fuentes"
     ],
     "year": "2022",
-    "doi": "10.5281/zenodo.7342828",
-    "url": "https://doi.org/10.5281/zenodo.7342828",
+    "doi": "10.5281/zenodo.7385261",
+    "url": "https://doi.org/10.5281/zenodo.7385261",
     "ee": "https://zenodo.org/api/files/b72f3c09-c0a0-4f85-96f2-270fcdfd9409/000043.pdf",
     "pages": "361-368",
     "abstract": "Beat and downbeat tracking models have improved significantly in recent years with the introduction of deep learning methods. However, despite these improvements, several challenges remain. Particularly, the adaptation of available models to underrepresented music traditions in MIR is usually synonymous with collecting and annotating large amounts of data, which is impractical and time-consuming. Transfer learning, data augmentation, and fine-tuning techniques have been used quite successfully in related tasks and are known to alleviate this bottleneck. Furthermore, when studying these music traditions, models are not required to generalize to multiple mainstream music genres but to perform well in more constrained, homogeneous conditions. In this work, we investigate simple yet effective strategies to adapt beat and downbeat tracking models to two different Latin American music traditions and analyze the feasibility of these adaptations in real-world applications concerning the data and computational requirements. Contrary to common belief, our findings show it is possible to achieve good performance by spending just a few minutes annotating a portion of the data and training a model in a standard CPU machine, with the precise amount of resources needed depending on the task and the complexity of the dataset.",
-    "zenodo_id": 7342828,
+    "zenodo_id": 7385261,
     "dblp_key": null
   },
   {
