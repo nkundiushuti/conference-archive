@@ -1521,12 +1521,12 @@
       "Pierre Chanquion"
     ],
     "year": "2022",
-    "doi": "10.5281/zenodo.7316774",
-    "url": "https://doi.org/10.5281/zenodo.7316774",
+    "doi": "10.5281/zenodo.7402960",
+    "url": "https://doi.org/10.5281/zenodo.7402960",
     "ee": "https://zenodo.org/api/files/d5d4bba8-2d81-49aa-be4a-dc9cd7298361/000091.pdf",
     "pages": "756-763",
     "abstract": "The task of identifying melodic lines in a polyphonic piece is a known active research topic in the symbolic and audio domain. Its importance has attracted the interest of researchers focusing on Music Information Retrieval and musicological applications and achieving high results is a common goal in industrial applications. The distinction of a melody in a written score can be a challenging task, however improvements have been reported in recent years using deep learning methods. In this paper, we present a lightweight deep bidirectional LSTM model for identifying the most salient melodic line of a music piece using handcrafted features without requiring the input score to be separated into multiple parts. We evaluate our model to measure the effectiveness of several data augmentation techniques and to compare performance to other state-of-the-art models. We also identify the features importance and evaluate their incremental contribution on the model performance using evaluation metrics. Results on the POP909 dataset show that our model approximates or outperforms current state of the art models trained on the same dataset, based on different implemented metrics and observations.",
-    "zenodo_id": 7316774,
+    "zenodo_id": 7402960,
     "dblp_key": null
   },
   {
